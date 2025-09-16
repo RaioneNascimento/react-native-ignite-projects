@@ -1,22 +1,22 @@
 import { Text, Pressable, PressableProps } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { colors } from "@/styles/colors";
-import { style } from "./styles";
+import { styles } from "./styles";
 
 type Categories = PressableProps & {
   // id: string
   name: string
-  isSelected: boolean
+  isSelected?: boolean
   icon: keyof typeof MaterialIcons.glyphMap
 }
 
-export function Category({ name, icon, isSelected, ...rest }: Categories) {
+export function Category({ name, icon, isSelected = false, ...rest }: Categories) {
   const color = isSelected ? colors.green[300] : colors.gray[400];
 
   return (
-    <Pressable style={style.container} {...rest}>
+    <Pressable style={styles.container} {...rest}>
       <MaterialIcons name={icon} size={16} color={color} />
-      <Text style={[style.name, { color }]}>{name}</Text>
+      <Text style={[styles.name, { color }]}>{name}</Text>
     </Pressable >
   )
 }
